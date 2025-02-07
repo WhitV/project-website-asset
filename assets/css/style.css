@@ -1,0 +1,472 @@
+/* ------------------------------------
+   0. Import Google Fonts
+------------------------------------ */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* ------------------------------------
+   1. CSS Variables
+------------------------------------ */
+:root {
+    /* -- Primary Colors */
+    --color-primary: #0f4c75;
+    --color-secondary: #3282b8;
+    --color-success: #28a745;
+    --color-warning: #ffc107;
+    --color-danger: #dc3545;
+    --color-light: #f8f9fa;
+    --color-dark: #1b262c;
+    --color-white: #ffffff;
+
+    /* -- Text Colors */
+    --color-text: #333333;
+    --color-text-light: #bbe1fa;
+    --color-dark-text: #e0e0e0;
+
+    /* -- Dark Mode Backgrounds */
+    --color-dark-bg: #121212;
+    --color-dark-navbar: rgba(18, 18, 18, 0.9);
+    --color-dark-footer: rgba(27, 38, 44, 0.9);
+    --color-dark-table-bg: #1e1e1e;
+    --color-dark-table-border: #575757;
+    --color-dark-table-striped-odd: #282828;
+    --color-dark-table-striped-even: #121212;
+}
+
+/* ------------------------------------
+   2. Reset CSS
+------------------------------------ */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ------------------------------------
+   3. Full Height & Base Body
+------------------------------------ */
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Kanit', 'Roboto', 'Caveat', sans-serif;
+    background-color: var(--color-light);
+    color: var(--color-text);
+    line-height: 1.6;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* --- Dark Mode for Body --- */
+body.dark-mode {
+    background-color: #212121; /* เข้มกว่าการ์ด */
+    color: var(--color-dark-text);
+}
+
+/* ------------------------------------
+   4. Container
+------------------------------------ */
+.container {
+    flex: 1 0 auto;
+    padding: 20px;
+}
+
+/* ------------------------------------
+   5. Navbar
+------------------------------------ */
+.navbar {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    background-color: rgb(0 60 101);
+    backdrop-filter: blur(10px);
+    transition: background-color 0.5s ease;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-text-light);
+    transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+    color: var(--color-white);
+}
+
+.nav-link {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--color-text-light);
+}
+
+/* --- Dark Mode for Navbar --- */
+body.dark-mode .navbar {
+    background-color: rgb(31 31 31 / 90%);
+}
+
+body.dark-mode .nav-link {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+body.dark-mode .nav-link:hover {
+    color: var(--color-text-light);
+}
+
+/* ------------------------------------
+   6. Buttons
+------------------------------------ */
+.btn {
+    border-radius: 15px;
+    font-size: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Prevent color change (override utility) */
+.btn-no-change {
+    background-color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+    color: var(--color-text-light) !important;
+}
+
+.button-group {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 12px 16px;
+}
+
+.btn-add-asset {
+    margin-right: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #0d3a5b;
+}
+
+.btn-primary,
+.btn-primary.active,
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:hover {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-text-light);
+}
+
+/* --- Dark Mode for Buttons --- */
+body.dark-mode .btn-primary,
+body.dark-mode .btn-primary.active,
+body.dark-mode .btn-primary:active,
+body.dark-mode .btn-primary:focus,
+body.dark-mode .btn-primary:hover {
+    background-color: rgb(44 44 44);
+    border-color: rgb(31 31 31);
+    color: rgb(255, 255, 255);
+}
+
+body.dark-mode .btn-secondary {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+    color: var(--color-white);
+}
+
+body.dark-mode .btn-success {
+    background-color: var(--color-success);
+    border-color: var(--color-success);
+    color: var(--color-white);
+}
+
+body.dark-mode .btn-warning {
+    background-color: var(--color-warning);
+    border-color: var(--color-warning);
+    color: var(--color-text);
+}
+
+body.dark-mode .btn-danger {
+    background-color: var(--color-danger);
+    border-color: var(--color-danger);
+    color: var(--color-white);
+}
+
+/* ------------------------------------
+   7. Table
+------------------------------------ */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    margin: 20px 0;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: var(--color-white);
+    color: var(--color-text);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.table th,
+.table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table th {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgb(232, 237, 241); /* Light mode */
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: #fff;
+}
+
+/* --- Dark Mode for Table --- */
+body.dark-mode .table {
+    background-color: var(--color-dark-table-bg);
+    color: var(--color-dark-text);
+}
+
+body.dark-mode .table th,
+body.dark-mode .table td {
+    border-bottom: 1px solid var(--color-dark-table-border);
+}
+
+body.dark-mode .table th {
+    background-color: rgb(70 70 70 / 67%);
+    color: var(--color-white);
+}
+
+body.dark-mode .table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgb(50 50 50 / 25%);
+}
+
+body.dark-mode .table-striped tbody tr:nth-of-type(even) {
+    background-color: var(--color-dark-table-striped-even);
+}
+
+/* Additional table-striped rules for Bootstrap-like behavior */
+.table-striped>tbody>tr:nth-of-type(odd)>* {
+    --bs-table-color-type: var(--bs-table-striped-color);
+    --bs-table-bg-type: rgb(232, 237, 241);
+}
+
+body.dark-mode .table-striped>tbody>tr:nth-of-type(odd)>* {
+    --bs-table-color-type: var(--bs-table-striped-color);
+    --bs-table-bg-type: rgba(50, 50, 50, 0.117);
+}
+
+/* ------------------------------------
+   8. Card
+------------------------------------ */
+.card {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    background-color: var(--color-white);
+    color: var(--color-text);
+    overflow: hidden;
+    transition: background-color 0.5s ease, color 0.5s ease, transform 0.3s ease;
+}
+
+.card-header {
+    font-size: 1.25rem;
+    font-weight: bold;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 15px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* --- Dark Mode for Card --- */
+body.dark-mode .card {
+    background-color: rgba(45, 45, 45, 0.9);
+    color: var(--color-dark-text);
+}
+
+body.dark-mode .card-header {
+    background-color: #39393900;
+    color: var(--color-white);
+}
+
+/* ------------------------------------
+   9. Form
+------------------------------------ */
+.myHeader {
+    text-align: center;
+}
+
+.myForm {
+    display: flex;
+    justify-content: center;
+}
+
+.myForm .myform-menu {
+    display: flex;
+    list-style: none;
+}
+
+.myform-menu li {
+    margin: 1rem;
+}
+
+.inputbox {
+    display: flex;
+    margin: 1rem 0.5rem;
+    height: 40px;
+    width: 100px;
+}
+
+.form-control,
+.form-select {
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+/* ------------------------------------
+   10. Responsive Search Input
+------------------------------------ */
+.input-group {
+    display: flex;
+}
+
+.input-group .form-control {
+    flex: 1;
+}
+
+.input-group .input-group-text {
+    margin-top: 10px;
+    align-self: flex-end;
+}
+
+/* ------------------------------------
+   11. Image
+------------------------------------ */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    color: var(--color-text-light);
+}
+
+/* ------------------------------------
+   14. Theme Transition
+------------------------------------ */
+body,
+.navbar,
+.card,
+.table,
+footer {
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* ------------------------------------
+   15. Theme Toggle Button
+------------------------------------ */
+#themeToggle {
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--color-white);
+    transition: color 0.3s;
+}
+
+#themeToggle:hover {
+    color: var(--color-text-light);
+}
+
+/* ------------------------------------
+   16. Drag Badge
+------------------------------------ */
+.drag-badge {
+    cursor: grab;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.drag-badge:active {
+    cursor: grabbing;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+}
+
+/* ------------------------------------
+   17. Pagination Active Button
+------------------------------------ */
+.pagination .btn.active {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-text-light);
+}
+
+/* ------------------------------------
+   18. Typography
+------------------------------------ */
+.roboto-thin {
+    font-family: "Roboto", serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.roboto-light {
+    font-family: "Roboto", serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+/* ...existing code for other font styles... */
+
+.kanit-thin {
+    font-family: "Kanit", serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.kanit-extralight {
+    font-family: "Kanit", serif;
+    font-weight: 200;
+    font-style: normal;
+}
+
+/* ------------------------------------
+   19. Dark Mode Enhancements
+   (Overrides for .btn-primary)
+------------------------------------ */
+body.dark-mode .btn-primary,
+body.dark-mode .btn-primary.active,
+body.dark-mode .btn-primary:active,
+body.dark-mode .btn-primary:focus,
+body.dark-mode .btn-primary:hover {
+    background-color: rgb(44 44 44);
+    border-color: rgb(31 31 31);
+    color: rgb(255, 255, 255);
+}
