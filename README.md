@@ -14,16 +14,19 @@
 ## Installation
 
 1. ดาวน์โหลดไฟล์เว็บแอพได้ที่:
+
     ```
     https://github.com/WhitV/project-website-asset
     ```
 
 2. จำเป็นต้องใช้ xmapp และนำโฟลเดอร์ไปวางที่ htdocs:
+
     ```
     \xampp\htdocs\project-website-asset-main
     ```
 
 3. ติดตั้งไลบรารีที่จำเป็นโดยใช้ Composer:
+
     ```
     composer install
     ```
@@ -31,9 +34,11 @@
 4.  เปิดใช้งาน GD Extension ใน PHP:
     - เปิดไฟล์ `php.ini`
     - ค้นหาและยกเลิกการคอมเมนต์ (ลบ `;` ข้างหน้า) บรรทัดนี้:
+
       ```
       extension=gd
       ```
+
     - รีสตาร์ทเซิร์ฟเวอร์ XAMPP หรือ Apache
 
 5. ตั้งค่าฐานข้อมูล:
