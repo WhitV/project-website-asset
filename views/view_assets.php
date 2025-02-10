@@ -383,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // อัปเดตจำนวนสินทรัพย์
-        totalAssetsElement.innerHTML = `&nbsp;&nbsp;จำนวนสินทรัพย์ทั้งหมด: ${filteredCount}`;
+        totalAssetsElement.innerHTML = `จำนวนสินทรัพย์ทั้งหมด: ${filteredCount}`;
     }
 
     // Event Listener
