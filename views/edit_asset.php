@@ -77,7 +77,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':responsible_person' => $_POST['responsible_person'],
             ':price' => $_POST['price'],
             ':inventory_number' => $_POST['inventory_number'], // เพิ่มฟิลด์เลขครุภัณฑ์
-            ':image' => $asset['image']
+            ':image' => $asset['image'],
+            ':warranty_expiry_date' => $_POST['warranty_expiry_date'] ?? null,
         ];
 
         // การอัปโหลดไฟล์รูปภาพใหม่ (ถ้ามี)
@@ -209,6 +210,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div class="mb-3">
                                 <label for="price" class="form-label">ราคา<span style="color: red;">*</span></label>
                                 <input type="number" step="0.01" class="form-control" id="price" name="price" value="<?php echo htmlspecialchars($asset['price']); ?>" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="warranty_expiry_date" class="form-label">วันที่หมดอายุประกันสินค้า</label>
+                                <input type="date" class="form-control" id="warranty_expiry_date" name="warranty_expiry_date" value="<?php echo htmlspecialchars($asset['warranty_expiry_date']); ?>">
                             </div>
                         </div>
                     </div>

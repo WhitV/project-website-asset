@@ -43,7 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ':purchase_date' => $purchaseDate,
         ':responsible_person' => $_POST['responsible_person'],
         ':price' => $_POST['price'],
-        ':image' => null // ตั้งค่า default หากไม่มีการอัปโหลดรูปภาพ
+        ':image' => null, // ตั้งค่า default หากไม่มีการอัปโหลดรูปภาพ
+        ':warranty_expiry_date' => $_POST['warranty_expiry_date'] ?? null,
     ];
 
     // การอัปโหลดรูปภาพ (ถ้ามี)
@@ -164,7 +165,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <input type="date" class="form-control" id="purchase_date" name="purchase_date" max="<?php echo date('Y-m-d', strtotime('1 day')); ?>" required>
                             </div>
                         </div>
-                    </div>  
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="warranty_expiry_date" class="form-label">วันที่หมดอายุประกันสินค้า (ถ้ามี)</label>
+                            <input type="date" class="form-control" id="warranty_expiry_date" name="warranty_expiry_date">
+                        </div>
+                    </div>
+                </div>  
 
                 <div class="mb-3">
                     <label for="image" class="form-label">อัปโหลดรูปภาพ (ถ้ามี)</label>

@@ -121,6 +121,7 @@ function generateAssetTable($assets, $offset) {
                     <th style="text-align: center;">วันที่ซื้อ</th>
                     <th style="text-align: center;">ราคา (บาท)</th>
                     <th style="text-align: center;">ผู้รับผิดชอบ</th>
+                    <th style="text-align: center;">ระยะประกันสินทรัพย์</th>
                     <th style="pointer-events: none; text-align: center">รูปภาพ</th>
                     <th style="pointer-events: none; text-align: center">การดำเนินการ</th>
                 </tr>
@@ -164,6 +165,8 @@ function generateAssetTable($assets, $offset) {
                         <td><?php echo number_format($asset['price'], 2); ?></td>
                         <!-- ผู้รับผิดชอบ -->
                         <td><?php echo htmlspecialchars($asset['responsible_person']); ?></td>
+                        <!-- ระยะประกันสินทรัพย์ -->
+                        <td><?php echo htmlspecialchars($asset['warranty_expiry_date'] ?? 'N/A'); ?></td>
                         <!-- รูปภาพ -->
                         <td>
                             <?php if (!empty($asset['image'])): ?>

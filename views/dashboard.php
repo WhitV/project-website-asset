@@ -209,4 +209,5 @@ function generateAssetTable($allAssets) {
     <!-- ตารางสินทรัพย์ทั้งหมด -->
     <?php generateAssetTable($assetSummary['allAssets']); ?>
 </div>
+
 <?php include_once '../includes/footer.php'; ?>

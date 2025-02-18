@@ -43,7 +43,8 @@ class AssetModel {
                           responsible_person, 
                           price, 
                           image, 
-                          status
+                          status,
+                          warranty_expiry_date
                       ) VALUES (
                           :asset_code, 
                           :inventory_number, 
@@ -56,7 +57,8 @@ class AssetModel {
                           :responsible_person, 
                           :price, 
                           :image, 
-                          'Active'
+                          'Active',
+                          :warranty_expiry_date
                       )";
 
             $stmt = $this->db->prepare($query);
@@ -84,7 +86,8 @@ class AssetModel {
                       responsible_person = :responsible_person, 
                       price = :price, 
                       image = :image,
-                      inventory_number = :inventory_number
+                      inventory_number = :inventory_number,
+                      warranty_expiry_date = :warranty_expiry_date
                   WHERE id = :id";
         $stmt = $this->db->prepare($query);
 
@@ -465,6 +468,26 @@ class AssetModel {
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':type_id', $typeId, PDO::PARAM_INT);
         return $stmt->execute();
+    }
+
+    /**
+     * Fetch assets with warranty expiry date within the next month.
+     */
+    public function fetchAssetsNearWarrantyExpiry() {
+        $query = "SELECT * FROM assets WHERE warranty_expiry_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 1 MONTH)";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Fetch active assets with warranty expiry date within the next month.
+     */
+    public function fetchActiveAssetsNearWarrantyExpiry() {
+        $query = "SELECT * FROM assets WHERE status = 'Active' AND warranty_expiry_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 1 MONTH)";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
 }
