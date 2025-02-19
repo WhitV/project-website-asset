@@ -193,19 +193,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="purchase_date" class="form-label" >วันที่ซื้อ<span style="color: red;">*</span></label>
-                                <input type="date" class="form-control" id="purchase_date" name="purchase_date" value="<?php echo htmlspecialchars($asset['purchase_date']); ?>" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
                                 <label for="responsible_person" class="form-label">ผู้รับผิดชอบ<span style="color: red;">*</span></label>
                                 <input type="text" class="form-control" id="responsible_person" name="responsible_person" value="<?php echo htmlspecialchars($asset['responsible_person']); ?>" required>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="price" class="form-label">ราคา<span style="color: red;">*</span></label>
@@ -215,6 +206,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
 
                     <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="purchase_date" class="form-label" >วันที่ซื้อ<span style="color: red;">*</span></label>
+                                <input type="date" class="form-control" id="purchase_date" name="purchase_date" value="<?php echo htmlspecialchars($asset['purchase_date']); ?>" required>
+                            </div>
+                        </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="warranty_expiry_date" class="form-label">วันที่หมดอายุประกันสินค้า</label>
