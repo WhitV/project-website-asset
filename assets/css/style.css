@@ -276,6 +276,51 @@ body.dark-mode .table-striped>tbody>tr:nth-of-type(odd)>* {
     --bs-table-bg-type: rgba(50, 50, 50, 0.117);
 }
 
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .table th, .table td {
+        padding: 8px;
+        font-size: 0.875rem;
+    }
+    .table th {
+        font-size: 1rem;
+    }
+    .table-responsive {
+        margin-bottom: 1rem;
+    }
+    .btn {
+        font-size: 0.875rem;
+        padding: 8px 12px;
+    }
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+    .nav-link {
+        font-size: 0.875rem;
+    }
+    .input-group .form-control {
+        font-size: 0.875rem;
+    }
+    .input-group .input-group-text {
+        font-size: 0.875rem;
+    }
+    .card-header {
+        font-size: 1.125rem;
+    }
+    .card-body {
+        padding: 15px;
+    }
+    .modal-title {
+        font-size: 1.125rem;
+    }
+    .modal-body {
+        font-size: 0.875rem;
+    }
+    .modal-footer .btn {
+        font-size: 0.875rem;
+    }
+}
+
 /* ------------------------------------
    8. Card
 ------------------------------------ */

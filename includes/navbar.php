@@ -20,6 +20,31 @@
         #warrantyAlert {
             display: none; /* ซ่อนปุ่มแจ้งเตือนเริ่มต้น */
         }
+        #alertButton {
+            width: 60px;
+            height: 60px;
+        }
+        #downloadButton {
+            width: 60px;
+            height: 60px;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .badge.bg-warning {
+            color: rgb(87, 87, 87);
+        }
+        @media (max-width: 768px) {
+            #alertButton, #downloadButton {
+                width: 50px;
+                height: 50px;
+            }
+            .badge.bg-warning {
+                font-size: 0.75rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -43,11 +68,14 @@
                     }
                     ?>
                     <li class="nav-item">
+                        <a class="nav-link"  href="../views/logout.php">Logout</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#" id="notificationButton">
                         </a>
                     </li>
                 </ul>
-                <span id="themeToggle" class="ms-3" title="Toggle Theme">
+                <span id="themeToggle" style="margin-right: 10px;" class="ms-3" title="Toggle Theme">
                     <span id="themeIcon">🌙</span>
                 </span>
             </div>
@@ -55,12 +83,17 @@
     </nav>
 
     <div id="warrantyAlert" class="position-fixed bottom-0 end-0 m-4">
-        <button id="alertButton" class="btn btn-danger rounded-circle p-3 position-relative">
-            <span class="position-absolute top-50 start-50 translate-middle">!</span>
-            <span id="alertCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
-                0
-            </span>
-        </button>
+        <div class="button-container">
+            <button id="alertButton" class="btn btn-danger rounded-circle p-3 position-relative">
+                <span class="position-absolute top-50 start-50 translate-middle"><i class="bi bi-exclamation-triangle-fill"></i></span>
+                <span id="alertCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
+                    0
+                </span>
+            </button>
+            <button id="downloadButton" class="btn btn-primary rounded-circle p-3 position-relative mt-2">
+                <span class="position-absolute top-50 start-50 translate-middle"><i class="bi bi-download"></i></span>
+            </button>
+        </div>
     </div>
 
     <div class="modal fade" id="warrantyModal" tabindex="-1" aria-labelledby="warrantyModalLabel" aria-hidden="true">
@@ -113,6 +146,65 @@
                     document.getElementById("warrantyAlert").style.display = "block";
                 }
             });
+
+        document.getElementById("downloadButton").addEventListener("click", function () {
+            const popup = document.createElement('div');
+            popup.innerHTML = `
+                <div class="modal fade" id="downloadModal" tabindex="-1" aria-labelledby="downloadModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" style="color: black;">ตัวเลือกการดาวน์โหลด</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body" style="color: rgb(87, 87, 87)">
+                                <form id="downloadForm">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="downloadOption" value="logs" id="downloadLogs">
+                                        <label class="form-check-label" for="downloadLogs">
+                                            ดาวน์โหลดบันทึกการใช้งาน
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="downloadOption" value="csv" id="downloadCSV">
+                                        <label class="form-check-label" for="downloadCSV">
+                                            ดาวน์โหลดไฟล์ .CSV
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="downloadOption" value="warranty" id="downloadWarranty">
+                                        <label class="form-check-label" for="downloadWarranty">
+                                            ดาวน์โหลดการแจ้งเตือนสินค้าใกล้หมดประกัน
+                                        </label>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" id="confirmDownload">ดาวน์โหลด</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(popup);
+            new bootstrap.Modal(document.getElementById("downloadModal")).show();
+
+            document.getElementById("confirmDownload").addEventListener("click", function () {
+                const selectedOption = document.querySelector('input[name="downloadOption"]:checked');
+
+                if (selectedOption) {
+                    const value = selectedOption.value;
+                    if (value === 'logs') {
+                        window.location.href = '../views/download_logs.php';
+                    } else if (value === 'csv') {
+                        window.location.href = '../views/download_csv.php';
+                    } else if (value === 'warranty') {
+                        window.location.href = '../views/download_warranty_alerts.php';
+                    }
+                    bootstrap.Modal.getInstance(document.getElementById("downloadModal")).hide();
+                }
+            });
+        });
     });
     </script>
 </body>

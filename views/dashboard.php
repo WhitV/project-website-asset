@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
+    header('Location: pin.php');
+    exit();
+}
+
 // dashboard.php - หน้า Dashboard
 include_once '../includes/navbar.php';
 include_once '../models/assetModel.php';

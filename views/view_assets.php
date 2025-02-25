@@ -1,15 +1,24 @@
 <?php
+session_start();
+if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
+    header('Location: pin.php');
+    exit();
+}
+
 /**********************************************************
  * 1. ส่วน Import/Include
  **********************************************************/
 include_once '../includes/navbar.php';
 include_once '../models/database.php';
+include_once '../models/logger.php';
 
 /**********************************************************
  * 2. เชื่อมต่อฐานข้อมูล & ประกาศตัวแปรที่ใช้ทำงาน
  **********************************************************/
 $db = new Database();
 $conn = $db->connection;
+$logger = new Logger();
+$logger->log('User viewed view assets');
 
 // กำหนดจำนวนรายการต่อหน้า
 $limit = 50;

@@ -1,11 +1,12 @@
 <?php
 // database.php - การเชื่อมต่อฐานข้อมูล
+require_once '../config/config.php';
 
 class Database {
-    private $host = 'localhost';
-    private $dbName = 'asset_management_DB'; // ชื่อฐานข้อมูลที่เราตกลงใช้
-    private $username = 'root'; // Username ของฐานข้อมูล (ปรับตามการตั้งค่าของคุณ)
-    private $password = ''; // Password ของฐานข้อมูล (ปรับตามการตั้งค่าของคุณ)
+    private $host = DB_HOST;
+    private $dbName = DB_NAME;
+    private $username = DB_USER;
+    private $password = DB_PASSWORD;
     public $connection;
 
     public function __construct() {
