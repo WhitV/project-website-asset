@@ -18,7 +18,7 @@ include_once '../models/logger.php';
 $db = new Database();
 $conn = $db->connection;
 $logger = new Logger();
-$logger->log('User viewed view assets');
+$logger->log('User accessed view_assets.php');
 
 // กำหนดจำนวนรายการต่อหน้า
 $limit = 50;

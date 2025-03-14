@@ -6,6 +6,10 @@ if (!isset($_SESSION['authenticated'])) {
     exit();
 }
 
+include_once '../models/logger.php';
+$logger = new Logger();
+$logger->log('User accessed download_warranty_alerts.php');
+
 header('Content-Type: text/csv; charset=utf-8');
 header('Content-Disposition: attachment; filename="warranty_alerts.csv"');
 

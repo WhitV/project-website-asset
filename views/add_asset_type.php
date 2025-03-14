@@ -2,8 +2,11 @@
 // add_asset_type.php - หน้าเพิ่มประเภทสินทรัพย์
 include_once '../includes/navbar.php';
 include_once '../models/assetModel.php';
+include_once '../models/logger.php';
 
 $assetModel = new AssetModel();
+$logger = new Logger();
+$logger->log('User accessed add_asset_type.php');
 
 // ดึงข้อมูลประเภทสินทรัพย์ทั้งหมด
 $assetTypes = $assetModel->fetchAssetTypes(true); // Include hidden types

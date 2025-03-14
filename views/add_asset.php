@@ -2,8 +2,11 @@
 // add_asset.php - หน้าเพิ่มข้อมูลสินทรัพย์
 include_once '../includes/navbar.php';
 include_once '../models/assetModel.php';
+include_once '../models/logger.php';
 
 $assetModel = new AssetModel();
+$logger = new Logger();
+$logger->log('User accessed add_asset.php');
 
 // ดึงประเภทสินทรัพย์สำหรับ Dropdown
 $assetTypes = $assetModel->fetchAssetTypes();

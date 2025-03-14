@@ -5,6 +5,8 @@ require '../models/logger.php';
 
 $db = new Database();
 $conn = $db->getConnection();
+$logger = new Logger();
+$logger->log('User accessed pin.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pin_code = $_POST['pin_code'];
@@ -18,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     } else {
         $error = "รหัส PIN ไม่ถูกต้องกรุณาลองใหม่อีกครั้ง";
+        $logger->log('Incorrect PIN attempt');
     }
 }
 ?>

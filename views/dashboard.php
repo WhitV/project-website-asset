@@ -8,6 +8,10 @@ if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
 // dashboard.php - หน้า Dashboard
 include_once '../includes/navbar.php';
 include_once '../models/assetModel.php';
+include_once '../models/logger.php';
+
+$logger = new Logger();
+$logger->log('User accessed dashboard.php');
 
 
 // Function to fetch asset summary data

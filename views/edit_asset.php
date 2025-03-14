@@ -2,8 +2,11 @@
 // edit_asset.php - หน้าแก้ไขข้อมูลสินทรัพย์
 include_once '../includes/navbar.php';
 include_once '../models/assetModel.php';
+include_once '../models/logger.php';
 
 $assetModel = new AssetModel();
+$logger = new Logger();
+$logger->log('User accessed edit_asset.php');
 
 // ตรวจสอบว่ามี ID ถูกส่งมา
 if (!isset($_GET['id'])) {
