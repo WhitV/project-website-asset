@@ -20,7 +20,7 @@
     https://github.com/WhitV/project-website-asset
     ```
 
-2. จำเป็นต้องใช้ XAMPP และนำโฟลเดอร์ไปวางที่ htdocs:
+2. จำเป็นต้องใช้ XAMPP 8.2.12 / PHP 8.2.12	 และนำโฟลเดอร์ไปวางที่ htdocs:
 
     ```
     \xampp\htdocs\project-website-asset
