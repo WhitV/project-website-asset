@@ -165,7 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="purchase_date" class="form-label">วันที่ซื้อ<span style="color: red;">*</span></label>
-                                <input type="date" class="form-control" id="purchase_date" name="purchase_date" max="<?php echo date('Y-m-d', strtotime('1 day')); ?>" required>
+                                <input type="date" class="form-control" id="purchase_date" name="purchase_date" max="<?php echo date('Y-m-d', strtotime('now', strtotime('+7 hours'))); ?>" required>
                             </div>
                         </div>
                     <div class="col-md-6">
