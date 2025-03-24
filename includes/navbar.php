@@ -168,14 +168,54 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="downloadOption" value="csv" id="downloadCSV">
                                         <label class="form-check-label" for="downloadCSV">
-                                            ดาวน์โหลดไฟล์ .CSV
+                                            ดาวน์โหลดไฟล์รายการสินทรัพย์ .CSV
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="downloadOption" value="pdf" id="downloadPDF">
+                                        <label class="form-check-label" for="downloadPDF">
+                                            ดาวน์โหลดไฟล์รายการสินทรัพย์ .PDF
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="downloadOption" value="warranty" id="downloadWarranty">
                                         <label class="form-check-label" for="downloadWarranty">
-                                            ดาวน์โหลดการแจ้งเตือนสินค้าใกล้หมดประกัน
+                                            ดาวน์โหลดการแจ้งเตือนสินค้าใกล้หมดประกัน .CSV
                                         </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="downloadOption" value="warranty_pdf" id="downloadWarrantyPDF">
+                                        <label class="form-check-label" for="downloadWarrantyPDF">
+                                            ดาวน์โหลดการแจ้งเตือนสินค้าใกล้หมดประกัน .PDF
+                                        </label>
+                                    </div>
+                                    <div class="form-group mt-3">
+                                        <label for="monthSelect">เลือกเดือน:</label>
+                                        <select class="form-control" id="monthSelect" name="month">
+                                            <option value="01">มกราคม</option>
+                                            <option value="02">กุมภาพันธ์</option>
+                                            <option value="03">มีนาคม</option>
+                                            <option value="04">เมษายน</option>
+                                            <option value="05">พฤษภาคม</option>
+                                            <option value="06">มิถุนายน</option>
+                                            <option value="07">กรกฎาคม</option>
+                                            <option value="08">สิงหาคม</option>
+                                            <option value="09">กันยายน</option>
+                                            <option value="10">ตุลาคม</option>
+                                            <option value="11">พฤศจิกายน</option>
+                                            <option value="12">ธันวาคม</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mt-3">
+                                        <label for="yearSelect">เลือกปี:</label>
+                                        <select class="form-control" id="yearSelect" name="year">
+                                            <?php
+                                            $currentYear = date("Y");
+                                            for ($year = $currentYear; $year >= $currentYear - 10; $year--) {
+                                                echo "<option value=\"$year\">$year</option>";
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </form>
                             </div>
@@ -191,15 +231,21 @@
 
             document.getElementById("confirmDownload").addEventListener("click", function () {
                 const selectedOption = document.querySelector('input[name="downloadOption"]:checked');
+                const month = document.getElementById("monthSelect").value;
+                const year = document.getElementById("yearSelect").value;
 
                 if (selectedOption) {
                     const value = selectedOption.value;
                     if (value === 'logs') {
-                        window.location.href = '../views/download_logs.php';
+                        window.location.href = `../views/download_logs.php?month=${month}&year=${year}`;
                     } else if (value === 'csv') {
-                        window.location.href = '../views/download_csv.php';
+                        window.location.href = `../views/download_csv.php?month=${month}&year=${year}`;
+                    } else if (value === 'pdf') {
+                        window.location.href = `../views/download_pdf.php?month=${month}&year=${year}`;
                     } else if (value === 'warranty') {
-                        window.location.href = '../views/download_warranty_alerts.php';
+                        window.location.href = `../views/download_warranty_alerts.php?month=${month}&year=${year}`;
+                    } else if (value === 'warranty_pdf') {
+                        window.location.href = `../views/download_warranty_alerts_pdf.php?month=${month}&year=${year}`;
                     }
                     bootstrap.Modal.getInstance(document.getElementById("downloadModal")).hide();
                 }
