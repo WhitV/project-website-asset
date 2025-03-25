@@ -1,0 +1,204 @@
+Context Diagram:
+----------------
+[เจ้าของธุรกิจ] --> [ระบบ]
+
+Process Flow:
+-------------
+1. เจ้าของธุรกิจเข้าสู่ระบบ
+2. เจ้าของธุรกิจดูแดชบอร์ด
+3. เจ้าของธุรกิจจัดการสินทรัพย์
+4. เจ้าของธุรกิจสร้างรายงาน
+5. เจ้าของธุรกิจออกจากระบบ
+
+Input Process Flow:
+-------------------
+1. เจ้าของธุรกิจป้อนข้อมูลการเข้าสู่ระบบ
+2. เจ้าของธุรกิจป้อนรายละเอียดสินทรัพย์
+
+Output Process Flow:
+--------------------
+1. ระบบแสดงแดชบอร์ด
+2. ระบบอัปเดตสถานะสินทรัพย์
+3. ระบบสร้างและแสดงรายงาน
+
+Data Flow Diagram Level 1:
+--------------------------
+1.0 กระบวนการเข้าสู่ระบบ:
+    - Input: ข้อมูลการเข้าสู่ระบบ, รหัสผู้ใช้
+    - Output: สถานะการตรวจสอบสิทธิ์, เซสชันผู้ใช้
+    - Data Store: ฐานข้อมูลผู้ใช้
+        - Process: ตรวจสอบข้อมูลการเข้าสู่ระบบและสร้างเซสชันผู้ใช้
+
+2.0 การแสดงแดชบอร์ด:
+    - Input: ข้อมูลเซสชันผู้ใช้, การตั้งค่าผู้ใช้
+    - Output: มุมมองแดชบอร์ด, การแจ้งเตือน
+    - Data Store: ฐานข้อมูลการตั้งค่าผู้ใช้
+        - Process: ดึงการตั้งค่าผู้ใช้สำหรับการแสดงแดชบอร์ด
+
+3.0 การจัดการสินทรัพย์:
+    - Input: รายละเอียดสินทรัพย์, ข้อมูลผู้จัดหา
+    - Output: สถานะสินทรัพย์ที่อัปเดต, รายงานสินทรัพย์
+    - Data Store: ฐานข้อมูลสินทรัพย์
+        - Process: เก็บและอัปเดตรายละเอียดสินทรัพย์
+
+4.0 การสร้างรายงาน:
+    - Input: คำขอรายงาน, ช่วงวันที่
+    - Output: รายงานที่สร้างขึ้น, สรุปรายงาน
+    - Data Store: ฐานข้อมูลรายงาน
+        - Process: ดึงข้อมูลสำหรับการสร้างรายงาน
+
+Data Flow Diagram Level 2 - Process 1:
+--------------------------------------
+1.1 ป้อนข้อมูลการเข้าสู่ระบบ:
+    - Input: ข้อมูลการเข้าสู่ระบบ
+    - Output: ข้อมูลการเข้าสู่ระบบที่ป้อน
+    - Data Store: ไม่มี
+
+1.2 ตรวจสอบข้อมูลการเข้าสู่ระบบ:
+    - Input: ข้อมูลการเข้าสู่ระบบที่ป้อน
+    - Output: ผลการตรวจสอบ
+    - Data Store: ฐานข้อมูลผู้ใช้
+        - Input: ข้อมูลการเข้าสู่ระบบที่ป้อน
+        - Output: ผลการตรวจสอบ
+        - Process: ตรวจสอบข้อมูลการเข้าสู่ระบบกับข้อมูลผู้ใช้ที่เก็บไว้
+
+1.3 สร้างเซสชันผู้ใช้:
+    - Input: ผลการตรวจสอบ
+    - Output: เซสชันผู้ใช้
+    - Data Store: ฐานข้อมูลผู้ใช้
+        - Input: ผลการตรวจสอบ
+        - Output: เซสชันผู้ใช้
+        - Process: สร้างเซสชันสำหรับผู้ใช้ที่ตรวจสอบสิทธิ์แล้ว
+
+Data Flow Diagram Level 2 - Process 2:
+--------------------------------------
+2.1 ดึงข้อมูลเซสชันผู้ใช้:
+    - Input: ข้อมูลเซสชันผู้ใช้
+    - Output: รายละเอียดเซสชัน
+    - Data Store: ฐานข้อมูลผู้ใช้
+        - Input: ข้อมูลเซสชันผู้ใช้
+        - Output: รายละเอียดเซสชัน
+        - Process: ดึงรายละเอียดเซสชันผู้ใช้
+
+2.2 ดึงการตั้งค่าผู้ใช้:
+    - Input: รายละเอียดเซสชัน
+    - Output: การตั้งค่าผู้ใช้
+    - Data Store: ฐานข้อมูลการตั้งค่าผู้ใช้
+        - Input: รายละเอียดเซสชัน
+        - Output: การตั้งค่าผู้ใช้
+        - Process: ดึงการตั้งค่าผู้ใช้
+
+2.3 แสดงแดชบอร์ด:
+    - Input: การตั้งค่าผู้ใช้
+    - Output: มุมมองแดชบอร์ด, การแจ้งเตือน
+    - Data Store: ไม่มี
+
+Data Flow Diagram Level 2 - Process 3:
+--------------------------------------
+3.1 ดึงรายละเอียดสินทรัพย์:
+    - Input: คำขอสินทรัพย์
+    - Output: รายละเอียดสินทรัพย์
+    - Data Store: ฐานข้อมูลสินทรัพย์
+        - Input: คำขอสินทรัพย์
+        - Output: รายละเอียดสินทรัพย์
+        - Process: ดึงรายละเอียดสินทรัพย์
+
+3.2 อัปเดตสินทรัพย์:
+    - Input: รายละเอียดสินทรัพย์, ข้อมูลผู้จัดหา
+    - Output: สถานะสินทรัพย์ที่อัปเดต
+    - Data Store: ฐานข้อมูลสินทรัพย์
+        - Input: รายละเอียดสินทรัพย์, ข้อมูลผู้จัดหา
+        - Output: สถานะสินทรัพย์ที่อัปเดต
+        - Process: เก็บรายละเอียดสินทรัพย์ที่อัปเดต
+
+3.3 สร้างรายงานสินทรัพย์:
+    - Input: สถานะสินทรัพย์ที่อัปเดต
+    - Output: รายงานสินทรัพย์
+    - Data Store: ฐานข้อมูลสินทรัพย์
+        - Input: สถานะสินทรัพย์ที่อัปเดต
+        - Output: รายงานสินทรัพย์
+        - Process: สร้างรายงานจากสินทรัพย์ที่อัปเดต
+
+Data Flow Diagram Level 2 - Process 4:
+--------------------------------------
+4.1 ขอข้อมูลรายงาน:
+    - Input: คำขอรายงาน, ช่วงวันที่
+    - Output: ข้อมูลรายงาน
+    - Data Store: ฐานข้อมูลรายงาน
+        - Input: คำขอรายงาน, ช่วงวันที่
+        - Output: ข้อมูลรายงาน
+        - Process: ดึงข้อมูลสำหรับรายงานที่ขอ
+
+4.2 สร้างรายงาน:
+    - Input: ข้อมูลรายงาน
+    - Output: รายงานที่สร้างขึ้น
+    - Data Store: ฐานข้อมูลรายงาน
+        - Input: ข้อมูลรายงาน
+        - Output: รายงานที่สร้างขึ้น
+        - Process: รวบรวมข้อมูลเป็นรายงาน
+
+4.3 แสดงรายงาน:
+    - Input: รายงานที่สร้างขึ้น
+    - Output: สรุปรายงาน
+    - Data Store: ไม่มี
+
+E-R Diagram:
+------------
+Entities:
+1. Asset
+    - Attributes: id, asset_code, inventory_number, name, asset_type_id, serial_number, location, department, purchase_date, responsible_person, price, created_at, updated_at, status, image, warranty_expiry_date
+    - Relationships: Asset N:1 --> belongs to --> AssetType
+
+2. AssetType
+    - Attributes: assets_types_id, asset_type_name, asset_type_hidden, asset_types_created_at
+    - Relationships: AssetType 1:N --> has many --> Asset
+
+3. PinCode
+    - Attributes: id, pin_code_hash, created_at, updated_at
+    - Relationships: PinCode 1:1 --> belongs to --> User
+
+Relationships:
+1. Asset N:1 --> belongs to --> AssetType
+2. AssetType 1:N --> has many --> Asset
+3. PinCode 1:1 --> belongs to --> User
+
+Data Directory:
+---------------
+1. Database: asset_management_db
+    - Tables:
+        a. assets
+            - Columns:
+                | Field Name         | Description                    | Type                  | Key  |
+                |--------------------|--------------------------------|-----------------------|------|
+                | id                 | Asset ID                       | int(11)               | PK   |
+                | asset_code         | Asset Code                     | varchar(50)           | UNI  |
+                | inventory_number   | Inventory Number               | varchar(255)          |      |
+                | name               | Asset Name                     | varchar(255)          |      |
+                | asset_type_id      | Asset Type ID                  | int(11)               | FK   |
+                | serial_number      | Serial Number                  | varchar(255)          |      |
+                | location           | Location                       | varchar(255)          |      |
+                | department         | Department                     | varchar(255)          |      |
+                | purchase_date      | Purchase Date                  | date                  |      |
+                | responsible_person | Responsible Person             | varchar(255)          |      |
+                | price              | Price                          | decimal(10,2)         |      |
+                | created_at         | Created At                     | timestamp             |      |
+                | updated_at         | Updated At                     | timestamp             |      |
+                | status             | Status                         | enum('Active','Retired') |      |
+                | image              | Image                          | varchar(255)          |      |
+                | warranty_expiry_date | Warranty Expiry Date         | date                  |      |
+        b. asset_types
+            - Columns:
+                | Field Name         | Description                    | Type                  | Key  |
+                |--------------------|--------------------------------|-----------------------|------|
+                | assets_types_id    | Asset Type ID                  | int(11)               | PK   |
+                | asset_type_name    | Asset Type Name                | varchar(255)          | UNI  |
+                | asset_type_hidden  | Asset Type Hidden              | tinyint(1)            |      |
+                | asset_types_created_at | Created At                 | timestamp             |      |
+        c. pin_codes
+            - Columns:
+                | Field Name         | Description                    | Type                  | Key  |
+                |--------------------|--------------------------------|-----------------------|------|
+                | id                 | Pin Code ID                    | bigint(20) UNSIGNED   | PK   |
+                | pin_code_hash      | Pin Code Hash                  | text                  |      |
+                | created_at         | Created At                     | timestamp             |      |
+                | updated_at         | Updated At                     | timestamp             |      |
